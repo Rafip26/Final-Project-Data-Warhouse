@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<Schema name="whdwo">
+<!--
+  == This software is subject to the terms of the Eclipse Public License v1.0
+  == Agreement, available at the following URL:
+  == http://www.eclipse.org/legal/epl-v10.html.
+  == You must accept the terms of that agreement to use this software.
+  ==
+  == Copyright (C) 2000-2005 Julian Hyde
+  == Copyright (C) 2005-2011 Pentaho and others
+  == All Rights Reserved.
+  -->
+
+<!-- Shared dimensions -->
+
+  
+
+<!-- Sales -->
+<Cube name="Jual" defaultMeasure="TotalDue">
+  <!-- Use annotations to provide translations of this cube's caption and
+       description into German and French. Use of annotations in this manner is
+       experimental and unsupported; just for testing right now. -->
+  
+  <Table name="faktapenjualan2"/>
+
+    
+  <Dimension name="product" foreignKey ="ProductID">
+      <Hierarchy hasAll="true" allMemberName="All product" primaryKey ="ProductID">
+      <Table name="product"/>
+      <Level name="Nama Produk" column="NameProduct"/>
+      <Level name="Nomor Produk" column="ProductNumber"/>
+      <Level name="Harga Standar" column="StandartCost"/>
+      </Hierarchy>
+  </Dimension>
+
+  <Dimension name="customer" foreignKey ="CustomerID">
+      <Hierarchy hasAll="true" allMemberName="All customer" primaryKey ="CustomerID">
+      <Table name="customer"/>
+      <Level name="Nama Customer" column="Name"/>
+      <Level name="Email Customer" column="Email"/>
+      <Level name="Nomor Telefon" column="Phone"/>
+      </Hierarchy>      
+  </Dimension>
+
+  <Dimension name="address" foreignKey ="AddressID">
+      <Hierarchy hasAll="true" allMemberName="All address" primaryKey ="AddressID">
+      <Table name="address"/>
+      <Level name="Alamat" column="AdressLine1"/>
+      <Level name="Nama Kota" column="City"/>
+      </Hierarchy>      
+  </Dimension>
+
+   <Dimension name="shipmethod" foreignKey ="ShipMethodID">
+      <Hierarchy hasAll="true" allMemberName="All shipmethod" primaryKey ="ShipmethodID">
+      <Table name="shipmethod"/>
+      <Level name="Nama" column="Name"/>
+      <Level name="Rating" column="Rate"/>
+      </Hierarchy>      
+  </Dimension>
+
+ <Dimension name="time" foreignKey ="TimeID">
+      <Hierarchy hasAll="true" allMemberName="All time" primaryKey ="TimeID">
+      <Table name="time"/>
+      <Level name="Tanggal" column="OrderDate"/>
+      </Hierarchy>      
+  </Dimension>
+
+  
+  <Measure name="TotalDue" column="TotalDue" aggregator="sum"
+      formatString="Standard"/>
+</Cube>
+
+
+
+</Schema>
