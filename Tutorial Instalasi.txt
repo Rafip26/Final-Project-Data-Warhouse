@@ -1,0 +1,4 @@
+Berikut cara install :
+1. Buka xampp dan nyalakan Apache, MySQL, dan Tomcat
+2. Import database MySQL yang sudah terlampir
+3. Jalankan file dashboard menggunakan Xampp
